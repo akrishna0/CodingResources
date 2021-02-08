@@ -1,6 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//Recursive solution
+void reverseRecursively(int *arr, int start, int end){
+	while(start >= end)
+		return;
+
+	int temp = arr[start];
+	arr[start] = arr[end];
+	arr[end] = temp;
+
+	reverseRecursively(arr, start+1, end-1);
+}
+
+
+//Normal O(n) solution
 void revereseArray(int arr[], int start, int end)
 {
 	while(start<end){
@@ -29,7 +43,8 @@ int main()
 	for(int i = 0 ; i < n ; i++){
 		cin>>arr[i];
 	}
-	revereseArray(arr,0,n-1);	
+//	revereseArray(arr,0,n-1);	
+        reverseRecursively(arr, 0, n-1);
 
 	cout << "Reversed array is" << endl;
 	
