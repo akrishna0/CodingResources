@@ -211,9 +211,24 @@ node * mergesortLL(node* head){
 
 }
 
+node* reverseLL(node* head){
+	if(head == NULL || head->next == NULL)
+		return head;
+
+	node* small = reverseLL(head->next);
+
+	node* temp = small;
+        while(temp->next != NULL){
+		temp = temp->next;
+	}
+	temp->next = head;
+	head->next = NULL;
+
+	return small;
+}
 int main(){
 	node *head = takeinput2();
 
-	node* h = mergesortLL(head);
+	node* h =reverseLL(head);
 	print(h);
 }
