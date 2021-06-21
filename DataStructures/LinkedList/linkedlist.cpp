@@ -226,9 +226,40 @@ node* reverseLL(node* head){
 
 	return small;
 }
+
+class Pair{
+	public:
+	node* head;
+	node* tail;
+};
+
+Pair reverseLinkedList(node* head){
+	if(head == NULL || head->next == NULL){
+		Pair ans;
+		ans.head = head;
+		ans.tail = head;
+		return ans;
+	}
+
+	Pair small = reverseLinkedList(head->next);
+
+	small.tail->next = head;
+	head->next = NULL;
+
+	Pair ans;
+	ans.head = small.head;
+	ans.tail = head;
+
+	return ans;
+}
+
+node* reverseLLBetter(node* head){
+	return reverseLinkedList(head).head;
+}
+
 int main(){
 	node *head = takeinput2();
 
-	node* h =reverseLL(head);
+	node* h =reverseLLBetter(head);
 	print(h);
 }
